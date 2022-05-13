@@ -10,7 +10,8 @@ public class Piece : MonoBehaviour
     public Slot goodSlot;
     public  AudioSource source;
     public AudioClip pickUpClip, dropClip, correctClip;
-    public int greseli;
+    public CountMistakes countMistakes;
+    public Instructions instructions;
 
     void Awake() {
         originalPosition = transform.position;
@@ -18,6 +19,7 @@ public class Piece : MonoBehaviour
 
     public void OnMouseDown() 
     {
+        if (!instructions.hasStarted()) { return; }
         source.PlayOneShot(pickUpClip);
         Debug.Log("OnMouseDown");
         dragging = true;
@@ -25,19 +27,27 @@ public class Piece : MonoBehaviour
         
     }
 
+    private IEnumerator SleepOneSec() {
+        yield return new WaitForSeconds(1);
+        instructions.playNext();
+    }
+
     public void OnMouseUp()
     {
+        if (!instructions.hasStarted()) { return; }
         Debug.Log("OnMouseUp");
-        if (Vector2.Distance(transform.position, goodSlot.transform.position) < 1)
+        if (Vector2.Distance(transform.position, goodSlot.transform.position) < 2)
         {
             source.PlayOneShot(correctClip);
             transform.position = goodSlot.transform.position;
             placed = true;
+            countMistakes.addMatch();
+            StartCoroutine(SleepOneSec());
         }
         else {
             source.PlayOneShot(dropClip);
             transform.position = originalPosition;
-            greseli += 1;
+            countMistakes.addMistake();
         }
         dragging = false;
     }
@@ -46,11 +56,12 @@ public class Piece : MonoBehaviour
     void Start()
     {
         placed = false;
-        greseli = 0;
+        instructions.playIntro();
     }
 
     void Update()
     {
+        if (!instructions.hasStarted()) { return; }
         if (placed) { return; }
         if (!dragging) { return; }
         var mousePosition = GetMousePos();
