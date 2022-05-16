@@ -23,7 +23,7 @@ public class GameHandler : MonoBehaviour
     void Start()
     {
         Debug.Log("GameHandler.Start");
-        nextGameButton.SetActive(false);
+        //nextGameButton.SetActive(false);
         confetti.SetActive(false);
         deactivateCoins();
         deactivateNumbers();
