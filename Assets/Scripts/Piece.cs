@@ -12,6 +12,7 @@ public class Piece : MonoBehaviour
     public AudioClip pickUpClip, dropClip, correctClip;
     public CountMistakes countMistakes;
     public Instructions instructions;
+    public int order;
 
     void Awake() {
         originalPosition = transform.position;
@@ -20,6 +21,7 @@ public class Piece : MonoBehaviour
     public void OnMouseDown() 
     {
         if (!instructions.hasStarted()) { return; }
+        if (goodSlot.isMatched()){ return; }
         source.PlayOneShot(pickUpClip);
         Debug.Log("OnMouseDown");
         dragging = true;
@@ -38,11 +40,25 @@ public class Piece : MonoBehaviour
         Debug.Log("OnMouseUp");
         if (Vector2.Distance(transform.position, goodSlot.transform.position) < 2)
         {
-            source.PlayOneShot(correctClip);
-            transform.position = goodSlot.transform.position;
-            placed = true;
-            countMistakes.addMatch();
-            StartCoroutine(SleepOneSec());
+            if (goodSlot.isMatched()) {
+                return;
+            }
+            if (instructions.getOrder() == order)
+            {
+                goodSlot.match();
+                instructions.nextOrder();
+                source.PlayOneShot(correctClip);
+                transform.position = goodSlot.transform.position;
+                placed = true;
+                countMistakes.addMatch();
+                StartCoroutine(SleepOneSec());
+            }
+            else {
+                source.PlayOneShot(dropClip);
+                transform.position = originalPosition;
+                countMistakes.addMistake();
+            }
+            
         }
         else {
             source.PlayOneShot(dropClip);

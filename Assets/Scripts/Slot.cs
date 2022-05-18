@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class Slot : MonoBehaviour
 {
+
+    private bool matched = false;
+
+    public bool isMatched() {
+        return matched;
+    }
+
+    public void match() {
+        matched = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
