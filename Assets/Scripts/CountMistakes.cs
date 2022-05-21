@@ -14,7 +14,7 @@ public class CountMistakes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nextGameButton.SetActive(false);
+        nextGameButton.SetActive(true);
         confetti.SetActive(false);
         mistakes = 0;
         matches = 0;
@@ -38,7 +38,7 @@ public class CountMistakes : MonoBehaviour
             final = true;
             source.PlayOneShot(felicitari);
             confetti.SetActive(true);
-            nextGameButton.SetActive(true);
+            //nextGameButton.SetActive(true);
         }
     }
 }

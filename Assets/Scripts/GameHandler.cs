@@ -85,6 +85,7 @@ public class GameHandler : MonoBehaviour
 
     void activateButton2()
     {
+        Debug.Log("dsa");
         ButonTren.SetActive(true);
     }
 
