@@ -6,6 +6,6 @@ public class LuggageScript : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D other)
     {
-        other.gameObject.SetActive(false);
+        //other.gameObject.SetActive(false);
     }
 }
