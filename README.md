@@ -5,25 +5,33 @@ Unity 2021.3.0f1
 
 
 
-Poveste: regele koo, nuka de kokosh
-Editable to the root
+Poveste: 
 
-1. Ai fost invitat pe insula regelui Koo unde e vara. Trebuie sa alegi ce haine vei purta in aventura ta. - Alegi haine din mai multe anotimpuri centrat doar pe vara. -  
+Regele Kokos a racit si are nevoie de ajutorul tau pentru a conduce insula pana cand el se va insanatosi. Vei putea sa il ajuti completand niste jocuri simple. 
 
-2. Cum ajungi pe insula regelui Koo? 
+1. Cum ajungi pe insula regelui Kokos? 
+(matematica + insule + mijloace de transport)
 
-Good (matematica + insule + mijloace de transport)
+2. Inainte sa mergi in calatoria ta catre insula regelui Kokos, iti amintesti ca trebuie sa iti iei haine potrivite pentru anotimpul de pe insula. Insa dulapul tau cu haine este imprastiat si trebuie sa sortezi hainele inainte. 
 
-3. Mai multe usi sau sa se ridice usa cate putin forme geometrice si culori
-pozitii ale unor obiecte si dimensiuni
-(a uitat cheia care merge la usa, si chei de diferite dimensiuni, culori, cu diferite forme la capat -cerc,patrat,triunghi)
+Ecranul este impartit in 4 cadrane. 
+Fiecare reprezentand un anotimp. 
+Cadranul din stanga sus de culoare verde reprezinta primavara.
+Cadranul din dreapta sus de culoare galben reprezinta vara.
+Cadranul din stanga jos de culoare maronie reprezinta toamna. 
+Iar Cadranul din dreapta jos de culoare albastra reprezinta iarna.
 
-Se duce regele la poarta palatului, dar nu mai stie ce cheie era ma, aia de deschidea usa, la cum ii zice ma, palat? Ajuta-l pe rege sa aleaga cheia potrivita (prin filtrare) fundal cu mai multe elemente pentru pozitii spatiale
+Tu va trebui sa tragi hainele din mijlocul ecranului in partea cu anotimpul corespunzator.   
+
+3. Ai ajuns pe insula regelui Kokos. 
+Incepi deja sa vezi maretul castel al regelui. Ajuns la poarta castelului observi ca aceasta este inchisa si are 5 lacate care trebuie sa fie deschise. 
+Langa aceasta poarta gasesti o camera deschisa cu un bilet la intrare. Camera este plina de chei, iar pe bilet sunt scrise niste indicii pentru a alege cheile care sa deschida lacatele portii.
+(pozitii spatiale, forme geometrice)
 
 4. Sala festiva cu mai multe locuri 5 sus 5 jos.  
 numeral ordinal cu info despre meserii
 
-5. Te pierzi in castel, trebuie sa ajungi in camera X. Regele KOO ti-a dat niste biletele cu ghicitori ca sa te ghideze catre acea camera prin castel. La fiecare intersectie de drum, punem niste numere 1-4 intersectii. Trebuie sa raspunzi la ghicitori iar fiecare raspuns are un numar atasat. Raspunsul cu numarul corect te duce pe drumul corect. La raspuns gresit mergi in dead end rip. La raspuns corect continui drumu. 
+5. Intalnirea dintre rege si supusii lui din castel s-a terminat. Acum acestia trebuie sa mearga acasa, insa castelul este inchis. Usile nu se pot deschide. Acesta este sistemul avansat al regelui si s-a blocat. Acesta are nevoie de un cod pentru a debloca usile, insa nu mai tine minte codul. Insa tu il vei ajuta raspunzand corect la niste ghicitori. Fiecare raspuns al unei ghicitori reprezinta o cifra din cod.  
 
 6. Regele il roaga pe personaj sa mearga pana la plaja de est ca sa curete plaja. Ca sa treaca pe acolo trebuie sa respecte regulile de circulatie. Ajuns acolo vede ca plaja arata deplorabil asa ca trebuie sa faca curatenie.
 reguli de circulatie iuliana
@@ -33,19 +41,15 @@ modalitati de ocrotire a mediului Iuliana
 
 
 Ecran principal 
-are simbolurile (ca la rares)  - toate pe ecran 
-sub simboluri un nume 28 de simboluri
+Simboluri pe ecran - fiecare fiind simbolul unui copil. La click pe simbol se deschide primul joc.
+Un buton pentru ecran educatoare.
 
+Ecran educatoare
+O parola pentru ecanul educatoarei (parola este edu sau ceva simplu).
+Asigneaza un nume la un simbol. Mesaj de confirmare. 
+Un buton de reset cu confirmare (se sterg toate numele + date salvate)
 
-o parola pentru ecanul educatoarei (parola este edu)
-un alt ecran pentru educatoare ( assign name to picture ) 
-confirmare
-un buton de reset cu confirmare (se sterg toate numele + date salvate)
-un simbol pentru educatoare separat
-
-
-copilu isi alege simbolul si il duce direct la primul joc. 
-un simbol pe care sa dea click si sa treaca peste (in caz ca n-are chef domle')
-nuca de cocos suparata ca treci peste joc (mesaj de confirmare auditiv, vrei sa treci peste acest joc?)
-
-daca mai are la final misiuni de completat facem un loop infinit paana la termina si ii dam la final o diploma sau medalie (sau diploma care sa se poate imprima cu numele lui si cu regele koo etc.)
+Detalii jocuri
+Copilul isi alege simbolul si il duce direct la primul joc. 
+Un simbol pe care sa dea click si sa treaca peste. (mesaj de confirmare auditiv, vrei sa treci peste acest joc?)
+Daca mai are la final misiuni de completat facem un loop infinit cu cele neterminate pana la termina si ii dam la final o diploma sau medalie (sau diploma care sa se poate imprima cu numele lui si cu regele kokos etc.)
