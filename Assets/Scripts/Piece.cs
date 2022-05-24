@@ -14,10 +14,6 @@ public class Piece : MonoBehaviour
     public Instructions instructions;
     public int order;
 
-    void Awake() {
-        originalPosition = transform.position;
-    }
-
     public void OnMouseDown() 
     {
         if (!instructions.hasStarted()) { return; }
@@ -73,6 +69,7 @@ public class Piece : MonoBehaviour
     {
         placed = false;
         instructions.playIntro();
+        originalPosition = transform.position;
     }
 
     void Update()

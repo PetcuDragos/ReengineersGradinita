@@ -22,8 +22,7 @@ public class QuestionScript : MonoBehaviour
     private bool A1HasStarted = false;
     private bool A2HasStarted = false;
     private bool A3HasStarted = false;
-    private bool A4HasStarted = false;
-    
+    private bool A4HasStarted = false;    
 
     // Start is called before the first frame update
     void Start()
@@ -40,25 +39,28 @@ public class QuestionScript : MonoBehaviour
 
     private void ButtonClicked(int index)
     {
-        if(index == correctIndex)
+        if (!audioSource.isPlaying)
         {
-            audioSource.clip = correct;
-            audioSource.Play();
-            correctHasStarted = true;
-            score += 1;
-        }
-        else
-        {
-            audioSource.clip = wrong;
-            audioSource.Play();
-            score -= 0.33f;
+            if (index == correctIndex)
+            {
+                audioSource.clip = correct;
+                audioSource.Play();
+                correctHasStarted = true;
+                score += 1;
+            }
+            else
+            {
+                audioSource.clip = wrong;
+                audioSource.Play();
+                score -= 0.33f;
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!audioSource.isPlaying)
+        if (!audioSource.isPlaying && !correctHasStarted)
         {
             if (!A1HasStarted)
             {
@@ -84,10 +86,10 @@ public class QuestionScript : MonoBehaviour
                 audioSource.Play();
                 A4HasStarted = true;
             }
-            else if(correctHasStarted)
-            {
-                EndGame();
-            }
+        }
+        else if (!audioSource.isPlaying && correctHasStarted)
+        {
+            EndGame();
         }
     }
 
