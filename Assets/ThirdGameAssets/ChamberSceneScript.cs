@@ -126,6 +126,9 @@ public class ChamberSceneScript : MonoBehaviour
 
     void StopGame()
     {
+        GameManager.Instance.Score[Game.Three] = score;
+        GameManager.Instance.SaveScoreForCurrentChild();
+        
         source.clip = final;
         source.Play();
         canGoToNextGame = true;

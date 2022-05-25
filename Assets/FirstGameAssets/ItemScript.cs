@@ -47,7 +47,7 @@ public class ItemScript : MonoBehaviour
             {
                 if (correctTargets[i].GetComponent<Collider2D>().IsTouching(this.gameObject.GetComponent<Collider2D>()))
                 {
-                    FirstGameScript.score += 1;
+                    FirstGameScript.score += 100;
                     this.gameObject.SetActive(false);
                     audioSource.clip = correct;
                     audioSource.Play();
@@ -57,8 +57,8 @@ public class ItemScript : MonoBehaviour
             {
                 if (wrongTargets[i].GetComponent<Collider2D>().IsTouching(this.gameObject.GetComponent<Collider2D>()))
                 {
-                    FirstGameScript.score -= 0.2f;
-                    wrongTargets[0].SetActive(false);
+                    FirstGameScript.score -= 20;
+                    wrongTargets[i].SetActive(false);
                     audioSource.clip = wrong;
                     audioSource.Play();
                 }

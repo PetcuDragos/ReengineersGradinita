@@ -8,7 +8,9 @@ public class NextGameButton : MonoBehaviour
 
     public GameObject currentGame;
     public GameObject nextGame;
+    public bool saveScoresOnClick;
     private Button button;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,8 @@ public class NextGameButton : MonoBehaviour
 
     public void OnClick()
     {
+        if (saveScoresOnClick)
+            GameManager.Instance.SaveScoreForCurrentChild();
         currentGame.SetActive(false);
         nextGame.SetActive(true);
     }

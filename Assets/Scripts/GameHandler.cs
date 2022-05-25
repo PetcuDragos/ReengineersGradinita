@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
+    private int score = 100;
     public GameObject ButonAvion;
     public GameObject ButonTren;
     public GameObject ButonVapor;
@@ -34,16 +35,24 @@ public class GameHandler : MonoBehaviour
     {
         //TextBox.GetComponent<TextMeshProUGUI>().text = "Fisrt choice made";
         Alegere = 1;
+        
+        if (score > 30)
+            score -= 35;
     }
     public void AlegTren()
     {
         //TextBox.GetComponent<TextMeshProUGUI>().text = "sECOD choice made";
         Alegere = 2;
+        
+        if (score > 30)
+            score -= 35;
     }
     public void AlegVapor()
     {
         //TextBox.GetComponent<TextMeshProUGUI>().text = "Third choice mate";
         Alegere = 3;
+
+        GameManager.Instance.Score[Game.One] = score;
     }
 
     void activateCoin1() {

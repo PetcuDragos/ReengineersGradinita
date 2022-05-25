@@ -5,7 +5,7 @@ using UnityEngine;
 public class FirstGameScript : MonoBehaviour
 {
 
-    public static float score = 0;
+    public static int score = 0;
     private int currentItemIndex = -1;
     public GameObject[] items;
     public GameObject currentGame;
@@ -51,6 +51,7 @@ public class FirstGameScript : MonoBehaviour
 
     private void StartEndGame()
     {
+        GameManager.Instance.Score[Game.Two] = score;
         endGameHandlerStarted = true;
         audioSource.clip = final;
         audioSource.Play();
