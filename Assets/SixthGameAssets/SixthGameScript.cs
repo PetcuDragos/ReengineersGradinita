@@ -5,7 +5,7 @@ using UnityEngine;
 public class SixthGameScript : MonoBehaviour
 {
 
-    public static float score = 0;
+    public static int score = 0;
     public GameObject trafficGame;
     public GameObject beachGame;
     public GameObject currentGame;
@@ -95,6 +95,9 @@ public class SixthGameScript : MonoBehaviour
 
     private void EndGame()
     {
+        GameManager.Instance.Score[Game.Six] = score;
+        GameManager.Instance.SaveScoreForCurrentChild();
+        
         currentGame.SetActive(false);
         nextGame.SetActive(true);
     }

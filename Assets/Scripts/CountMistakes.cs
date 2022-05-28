@@ -32,7 +32,11 @@ public class CountMistakes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (matches == 10 && !final) {
+        if (matches == 10 && !final)
+        {
+            var finalScore = matches * 20 - mistakes * 5;
+            GameManager.Instance.Score[Game.Four] = finalScore;
+            
             Debug.Log("final joc!");
             Debug.Log(mistakes);
             final = true;

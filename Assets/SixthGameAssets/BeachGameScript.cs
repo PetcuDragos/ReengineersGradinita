@@ -8,7 +8,7 @@ public class BeachGameScript : MonoBehaviour
     public AudioClip intro;
     public int numberOfTrashItems;
     public static int numberOfTrashItemsFound = 0;
-    public static float score = 0;
+    public static int score = 0;
 
     private bool gameEnded = false;
     // Start is called before the first frame update
@@ -33,6 +33,7 @@ public class BeachGameScript : MonoBehaviour
 
     private void EndGame()
     {
+        SixthGameScript.score += score;
         SixthGameScript.beachGameFinished = true;
     }
 }

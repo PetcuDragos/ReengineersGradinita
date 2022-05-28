@@ -16,7 +16,7 @@ public class QuestionScript : MonoBehaviour
     public AudioClip wrong;
     public GameObject nextQuiz;
 
-    private float score = 0;
+    private int score = 0;
 
     private bool correctHasStarted = false;
     private bool A1HasStarted = false;
@@ -46,13 +46,13 @@ public class QuestionScript : MonoBehaviour
                 audioSource.clip = correct;
                 audioSource.Play();
                 correctHasStarted = true;
-                score += 1;
+                score += 10;
             }
             else
             {
                 audioSource.clip = wrong;
                 audioSource.Play();
-                score -= 0.33f;
+                score -= 3;
             }
         }
     }

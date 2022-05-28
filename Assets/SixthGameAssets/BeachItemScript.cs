@@ -47,7 +47,7 @@ public class BeachItemScript : MonoBehaviour
             {
                 if (correctTargets[i].GetComponent<Collider2D>().IsTouching(this.gameObject.GetComponent<Collider2D>()))
                 {
-                    BeachGameScript.score += 1;
+                    BeachGameScript.score += 10;
                     BeachGameScript.numberOfTrashItemsFound += 1;
                     this.gameObject.SetActive(false);
                     audioSource.clip = correct;
@@ -58,7 +58,7 @@ public class BeachItemScript : MonoBehaviour
             {
                 if (wrongTargets[i].GetComponent<Collider2D>().IsTouching(this.gameObject.GetComponent<Collider2D>()))
                 {
-                    BeachGameScript.score -= 0.2f;
+                    BeachGameScript.score -= 2;
                     this.gameObject.SetActive(false);
                     audioSource.clip = wrong;
                     audioSource.Play();

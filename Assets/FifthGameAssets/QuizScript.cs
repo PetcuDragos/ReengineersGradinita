@@ -18,7 +18,7 @@ public class QuizScript : MonoBehaviour
 
     public static bool gameEnded = false;
 
-    public static float score = 0;
+    public static int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +56,9 @@ public class QuizScript : MonoBehaviour
 
     private void EndGame()
     {
+        GameManager.Instance.Score[Game.Five] = score;
+        GameManager.Instance.SaveScoreForCurrentChild();
+        
         currentGame.SetActive(false);
         nextGame.SetActive(true);
     }
