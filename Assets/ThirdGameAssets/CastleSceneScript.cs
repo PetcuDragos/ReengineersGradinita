@@ -25,11 +25,14 @@ public class CastleSceneScript : MonoBehaviour
             currentGame.SetActive(false);
             nextGame.SetActive(true);
         }
-        castlePlayer = animation.GetComponent<UnityEngine.Video.VideoPlayer>();
-        if(intro != null)
+        else
         {
-            source.PlayOneShot(intro);
-            soundStarted = true;
+            castlePlayer = animation.GetComponent<UnityEngine.Video.VideoPlayer>();
+            if (intro != null)
+            {
+                source.PlayOneShot(intro);
+                soundStarted = true;
+            }
         }
     }
 

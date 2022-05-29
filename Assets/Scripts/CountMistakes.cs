@@ -23,11 +23,13 @@ public class CountMistakes : MonoBehaviour
             currentGame.SetActive(false);
             nextGame.SetActive(true);
         }
-        nextGameButton.SetActive(true);
-        confetti.SetActive(false);
-        mistakes = 0;
-        matches = 0;
-        final = false;
+        else
+        {
+            confetti.SetActive(false);
+            mistakes = 0;
+            matches = 0;
+            final = false;
+        }
     }
 
     public void addMistake() {

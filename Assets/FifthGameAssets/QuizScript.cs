@@ -32,18 +32,21 @@ public class QuizScript : MonoBehaviour
             currentGame.SetActive(false);
             nextGame.SetActive(true);
         }
-        // Reset static state
-        gameEnded = false;
+        else
+        {
+            // Reset static state
+            gameEnded = false;
 
-        // Subscribe to right/wrong answer events
-        increaseScore = () => score += 10;
-        decreaseScore = () => score -= 3;
-        QuestionScript.OnCorrectAnswer += increaseScore;
-        QuestionScript.OnWrongAnswer += decreaseScore;
-        
-        audioSource.clip = intro;
-        audioSource.Play();
-        introStarted = true;
+            // Subscribe to right/wrong answer events
+            increaseScore = () => score += 10;
+            decreaseScore = () => score -= 3;
+            QuestionScript.OnCorrectAnswer += increaseScore;
+            QuestionScript.OnWrongAnswer += decreaseScore;
+
+            audioSource.clip = intro;
+            audioSource.Play();
+            introStarted = true;
+        }
     }
 
     // Update is called once per frame

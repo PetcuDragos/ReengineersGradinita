@@ -36,16 +36,19 @@ public class SecondGameScript : MonoBehaviour
             currentGame.SetActive(false);
             nextGame.SetActive(true);
         }
-        // Subscribe to right/wrong answer events
-        increaseScore = () => score += 100;
-        decreaseScore = () => score -= 20;
-        ItemScript.OnCorrectAnswer += increaseScore;
-        ItemScript.OnWrongAnswer += decreaseScore;
+        else
+        {
+            // Subscribe to right/wrong answer events
+            increaseScore = () => score += 100;
+            decreaseScore = () => score -= 20;
+            ItemScript.OnCorrectAnswer += increaseScore;
+            ItemScript.OnWrongAnswer += decreaseScore;
 
-        audioSource.clip = intro;
-        audioSource.Play();
-        instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
-        ShowNextItem();
+            audioSource.clip = intro;
+            audioSource.Play();
+            instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
+            ShowNextItem();
+        }
     }
 
     // Update is called once per frame

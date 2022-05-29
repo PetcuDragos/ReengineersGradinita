@@ -36,22 +36,24 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameManager.Instance.Score[Game.One] != -1)
+        if (GameManager.Instance.Score[Game.One] != -1)
         {
             currentGame.SetActive(false);
             nextGame.SetActive(true);
         }
-        //Debug.Log("GameHandler.Start");
-        audioSource.clip = intro;
-        audioSource.Play();
-        instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
-        ButonAvion.GetComponent<Button>().onClick.AddListener(() => AlegAvion());
-        ButonTren.GetComponent<Button>().onClick.AddListener(() => AlegTren());
-        ButonVapor.GetComponent<Button>().onClick.AddListener(() => AlegVapor());
-        confetti.SetActive(false);
-        deactivateCoins();
-        deactivateNumbers();
-        deactivateButtons();
+        else
+        {
+            audioSource.clip = intro;
+            audioSource.Play();
+            instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
+            ButonAvion.GetComponent<Button>().onClick.AddListener(() => AlegAvion());
+            ButonTren.GetComponent<Button>().onClick.AddListener(() => AlegTren());
+            ButonVapor.GetComponent<Button>().onClick.AddListener(() => AlegVapor());
+            confetti.SetActive(false);
+            deactivateCoins();
+            deactivateNumbers();
+            deactivateButtons();
+        }
     }
 
     public void AlegAvion()

@@ -39,22 +39,25 @@ public class SixthGameScript : MonoBehaviour
             currentGame.SetActive(false);
             nextGame.SetActive(true);
         }
-        // Reset static state
-        trafficGameFinished = false;
-        beachGameFinished = false;
-        
-        // Subscribe to right/wrong answer events
-        increaseScore = () => score += 100;
-        decreaseScore = () => score -= 20;
-        BeachItemScript.OnCorrectAnswer += increaseScore;
-        BeachItemScript.OnWrongAnswer += decreaseScore;
-        
-        if (intro != null)
+        else
         {
-            audioSource.clip = intro;
-            audioSource.Play();
+            // Reset static state
+            trafficGameFinished = false;
+            beachGameFinished = false;
+
+            // Subscribe to right/wrong answer events
+            increaseScore = () => score += 100;
+            decreaseScore = () => score -= 20;
+            BeachItemScript.OnCorrectAnswer += increaseScore;
+            BeachItemScript.OnWrongAnswer += decreaseScore;
+
+            if (intro != null)
+            {
+                audioSource.clip = intro;
+                audioSource.Play();
+            }
+            introStarted = true;
         }
-        introStarted = true;
     }
 
     // Update is called once per frame
