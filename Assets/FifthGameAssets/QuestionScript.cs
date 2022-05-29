@@ -52,8 +52,15 @@ public class QuestionScript : MonoBehaviour
             if (index == correctIndex)
             {
                 OnCorrectAnswer?.Invoke();
-                audioSource.clip = correct;
-                audioSource.Play();
+                if (correct != null)
+                {
+                    audioSource.clip = correct;
+                    audioSource.Play();
+                }
+                else
+                {
+                    audioSource.Stop();
+                }
                 correctHasStarted = true;
             }
             else
