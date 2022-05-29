@@ -30,6 +30,12 @@ public class SecondGameScript : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("joc 2 " + GameManager.Instance.Score[Game.Two]);
+        if (GameManager.Instance.Score[Game.Two] != -1)
+        {
+            currentGame.SetActive(false);
+            nextGame.SetActive(true);
+        }
         // Subscribe to right/wrong answer events
         increaseScore = () => score += 100;
         decreaseScore = () => score -= 20;

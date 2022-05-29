@@ -15,7 +15,7 @@ namespace GameState
         private string _scoreFilePath;
     
         public string ChildName { get; set; }
-        public Dictionary<Game, int> Score { get; } = new Dictionary<Game, int>();
+        public Dictionary<Game, int> Score { get; set; } = new Dictionary<Game, int>();
 
         private void Awake()
         {
@@ -34,6 +34,52 @@ namespace GameState
         void Start()
         {
         
+        }
+
+        public void LoadScoreForCurrentChild()
+        {
+            if (File.Exists(_scoreFilePath))
+            {
+                Debug.Log("Child name " + ChildName);
+                var prevScores = File.ReadAllText(_scoreFilePath);
+                var childRow = "";
+                foreach (var row in prevScores.Split(Environment.NewLine))
+                {
+                    if (row.StartsWith(ChildName))
+                    {
+                        childRow = row;
+                        break;
+                    }
+                }
+                if(childRow != "")
+                {
+                    string[] gamesScore = childRow.Split(',');
+                    Score.Clear();
+                    
+                    int index = 1;
+                    foreach (Game game in Enum.GetValues(typeof(Game)))
+                    {
+                        Debug.Log("games" + game + " scor " + gamesScore[index]);
+                        if (gamesScore[index].Contains("NETERMINAT"))
+                        {
+                            Score.Add(game, -1);
+                        }
+                        else
+                        {
+                            Score.Add(game, int.Parse(gamesScore[index]));
+                        }
+                        index++;
+                    }
+                }
+                else
+                {
+                    Score.Clear();
+                    foreach (Game game in Enum.GetValues(typeof(Game)))
+                    {
+                        Score.Add(game, -1);
+                    }
+                }
+            }
         }
     
         public void SaveScoreForCurrentChild()

@@ -18,6 +18,11 @@ public class CountMistakes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.Instance.Score[Game.Four] != -1)
+        {
+            currentGame.SetActive(false);
+            nextGame.SetActive(true);
+        }
         nextGameButton.SetActive(true);
         confetti.SetActive(false);
         mistakes = 0;

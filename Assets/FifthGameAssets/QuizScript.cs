@@ -27,6 +27,11 @@ public class QuizScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.Instance.Score[Game.Five] != -1)
+        {
+            currentGame.SetActive(false);
+            nextGame.SetActive(true);
+        }
         // Reset static state
         gameEnded = false;
 

@@ -1,3 +1,4 @@
+using GameState;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,16 @@ public class CastleSceneScript : MonoBehaviour
     private bool animationStarted = false;
     public GameObject currentScene;
     public GameObject nextScene;
+    public GameObject currentGame;
+    public GameObject nextGame;
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.Instance.Score[Game.Three] != -1)
+        {
+            currentGame.SetActive(false);
+            nextGame.SetActive(true);
+        }
         castlePlayer = animation.GetComponent<UnityEngine.Video.VideoPlayer>();
         if(intro != null)
         {

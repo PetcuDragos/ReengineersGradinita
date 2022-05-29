@@ -75070,6 +75070,8 @@ MonoBehaviour:
   intro: {fileID: 8300000, guid: 2954b4021aa2e7b48a78faa44d3f0be0, type: 3}
   currentScene: {fileID: 1627784669}
   nextScene: {fileID: 436957779}
+  currentGame: {fileID: 292664057}
+  nextGame: {fileID: 236080743}
 --- !u!1 &1628148244
 GameObject:
   m_ObjectHideFlags: 0

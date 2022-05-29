@@ -34,6 +34,11 @@ public class SixthGameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.Instance.Score[Game.Six] != -1)
+        {
+            currentGame.SetActive(false);
+            nextGame.SetActive(true);
+        }
         // Reset static state
         trafficGameFinished = false;
         beachGameFinished = false;

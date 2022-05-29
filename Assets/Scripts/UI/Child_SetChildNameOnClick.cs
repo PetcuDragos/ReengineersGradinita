@@ -15,6 +15,7 @@ public class Child_SetChildNameOnClick : MonoBehaviour
         childIconBtn.onClick.AddListener(() =>
         {
             GameManager.Instance.ChildName = childName;
+            GameManager.Instance.LoadScoreForCurrentChild();
         });
     }
 }
