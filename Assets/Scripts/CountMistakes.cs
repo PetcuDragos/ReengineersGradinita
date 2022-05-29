@@ -11,6 +11,9 @@ public class CountMistakes : MonoBehaviour
     public GameObject nextGameButton;
     public AudioSource source;
     public AudioClip felicitari;
+    public GameObject currentGame;
+    public GameObject nextGame;
+    private bool gameEnded = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +45,18 @@ public class CountMistakes : MonoBehaviour
             final = true;
             source.PlayOneShot(felicitari);
             confetti.SetActive(true);
+            gameEnded = true;
             //nextGameButton.SetActive(true);
         }
+        if(gameEnded && !source.isPlaying)
+        {
+            NextGame();
+        }
+    }
+
+    private void NextGame()
+    {
+        currentGame.SetActive(false);
+        nextGame.SetActive(true);
     }
 }

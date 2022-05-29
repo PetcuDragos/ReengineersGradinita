@@ -8,6 +8,7 @@ public class TrafficLevelScript : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip intro;
     public AudioClip final;
+    public AudioClip instruction;
     public AudioClip invalidNeighbourAudioClip;
     public AudioClip invalidAudioClip;
     public AudioClip invalidPoliceAudioClip;
@@ -16,6 +17,7 @@ public class TrafficLevelScript : MonoBehaviour
     public GameObject[] tiles;
     public GameObject currentLevel;
     public GameObject nextLevel;
+    public GameObject instructionButton;
     private bool introStarted = false;
     private bool introEnded = false;
     private bool finalStarted = false;
@@ -24,6 +26,7 @@ public class TrafficLevelScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
         if (intro != null)
         {
             audioSource.clip = intro;
@@ -123,6 +126,15 @@ public class TrafficLevelScript : MonoBehaviour
         {
             finalEnded = true;
             EndLevel();
+        }
+    }
+
+    private void ReplayInstruction()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = instruction;
+            audioSource.Play();
         }
     }
 }

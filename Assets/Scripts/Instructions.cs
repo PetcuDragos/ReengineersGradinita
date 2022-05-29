@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Instructions : MonoBehaviour
 {
     public AudioSource source;
     public AudioClip intro, bucatarS, doctorS, fotografS, judecatorS, programatorS, politistS, mecanicS, pompierS, fermierS, muncitorS;
+    public GameObject instructionButton;
     private bool started;
     private int count;
     private AudioClip[] list;
@@ -25,13 +27,15 @@ public class Instructions : MonoBehaviour
     }
 
     public void playIntro() {
-        source.PlayOneShot(intro);
+        source.clip = intro;
+        source.Play();
     }
 
     public void playNext() {
         source.Stop();
         if (count < 10) {
-            source.PlayOneShot(list[count]);
+            source.clip = list[count];
+            source.Play();
         }
         count += 1;
     }
@@ -41,6 +45,7 @@ public class Instructions : MonoBehaviour
     {
         started = false;
         count = 1;
+        instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
         list = new AudioClip[] { bucatarS, doctorS, fotografS, judecatorS, programatorS, politistS, mecanicS, pompierS, fermierS, muncitorS };
         order.Enqueue(1); order.Enqueue(2); order.Enqueue(3); order.Enqueue(4); order.Enqueue(5);
         order.Enqueue(6); order.Enqueue(7); order.Enqueue(8); order.Enqueue(9); order.Enqueue(10);
@@ -56,8 +61,17 @@ public class Instructions : MonoBehaviour
         }
         if (36 < timer && timer < 37) {
             source.Stop();
-            source.PlayOneShot(list[0]);
+            source.clip = list[0];
+            source.Play();
         }
         return;
+    }
+
+    private void ReplayInstruction()
+    {
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
     }
 }

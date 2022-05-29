@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BeachGameScript : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class BeachGameScript : MonoBehaviour
     public int numberOfTrashItems;
     public static int numberOfTrashItemsFound = 0;
     public static int score = 0;
+    public GameObject instructionButton;
 
     private bool gameEnded = false;
     // Start is called before the first frame update
     void Start()
     {
-        if(intro != null)
+        instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
+        if (intro != null)
         {
             audioSource.clip = intro;
             audioSource.Play();
@@ -35,5 +38,14 @@ public class BeachGameScript : MonoBehaviour
     {
         SixthGameScript.score += score;
         SixthGameScript.beachGameFinished = true;
+    }
+
+    private void ReplayInstruction()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = intro;
+            audioSource.Play();
+        }
     }
 }

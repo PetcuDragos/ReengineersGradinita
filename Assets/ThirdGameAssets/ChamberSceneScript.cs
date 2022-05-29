@@ -72,8 +72,11 @@ public class ChamberSceneScript : MonoBehaviour
     {
         score += 1;
         confirmationMessageStarted = true;
-        source.clip = correctSound;
-        source.Play();
+        if(currentIndex < 5 - 1) 
+        { 
+            source.clip = correctSound;
+            source.Play();
+        }
     }
 
     void Incorrect()
@@ -102,7 +105,7 @@ public class ChamberSceneScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentIndex == 5)
+        if(currentIndex >= 5 && !source.isPlaying && !canGoToNextGame)
         {
             StopGame();
         }

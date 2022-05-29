@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FirstGameScript : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class FirstGameScript : MonoBehaviour
     public AudioClip intro;
     public AudioClip final;
     private bool endGameHandlerStarted = false;
+    public GameObject instructionButton;
     // Start is called before the first frame update
 
     private void ShowNextItem()
@@ -26,6 +28,7 @@ public class FirstGameScript : MonoBehaviour
     {
         audioSource.clip = intro;
         audioSource.Play();
+        instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
         ShowNextItem();
     }
 
@@ -54,6 +57,12 @@ public class FirstGameScript : MonoBehaviour
         GameManager.Instance.Score[Game.Two] = score;
         endGameHandlerStarted = true;
         audioSource.clip = final;
+        audioSource.Play();
+    }
+
+    private void ReplayInstruction()
+    {
+        audioSource.clip = intro;
         audioSource.Play();
     }
 

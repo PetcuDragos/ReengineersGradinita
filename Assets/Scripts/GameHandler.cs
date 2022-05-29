@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
@@ -18,13 +19,19 @@ public class GameHandler : MonoBehaviour
     public GameObject numar3;
     public GameObject confetti;
     public GameObject nextGameButton;
+    public GameObject instructionButton;
+    public GameObject currentGame;
+    public GameObject nextGame;
     private float timer = 0f;
+
+    private bool gameFinished = false;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("GameHandler.Start");
         //nextGameButton.SetActive(false);
+        instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
         confetti.SetActive(false);
         deactivateCoins();
         deactivateNumbers();
@@ -176,7 +183,26 @@ public class GameHandler : MonoBehaviour
             deactivateCoins();
             deactivateNumbers();
             confetti.SetActive(true);
-            nextGameButton.SetActive(true);
+            gameFinished = true;
         }
+
+        if(gameFinished && !this.gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            NextGame();
+        }
+    }
+
+    private void ReplayInstruction()
+    {
+        if(!this.gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            this.gameObject.GetComponent<AudioSource>().Play();
+        }
+    }
+
+    private void NextGame()
+    {
+        currentGame.SetActive(false);
+        nextGame.SetActive(true);
     }
 }

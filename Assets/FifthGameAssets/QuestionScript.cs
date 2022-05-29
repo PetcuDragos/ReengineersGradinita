@@ -15,6 +15,7 @@ public class QuestionScript : MonoBehaviour
     public AudioClip correct;
     public AudioClip wrong;
     public GameObject nextQuiz;
+    public GameObject instructionButton;
 
     private int score = 0;
 
@@ -35,6 +36,7 @@ public class QuestionScript : MonoBehaviour
             var i1 = i;
             button.onClick.AddListener(() => { ButtonClicked(i1); });
         }
+        instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
     }
 
     private void ButtonClicked(int index)
@@ -62,25 +64,25 @@ public class QuestionScript : MonoBehaviour
     {
         if (!audioSource.isPlaying && !correctHasStarted)
         {
-            if (!A1HasStarted)
+            if (!A1HasStarted && answersAudio.Length > 0 && answersAudio[0] != null)
             {
                 audioSource.clip = answersAudio[0];
                 audioSource.Play();
                 A1HasStarted = true;
             }
-            else if (!A2HasStarted)
+            else if (!A2HasStarted && answersAudio.Length > 1 && answersAudio[1] != null)
             {
                 audioSource.clip = answersAudio[1];
                 audioSource.Play();
                 A2HasStarted = true;
             }
-            else if (!A3HasStarted)
+            else if (!A3HasStarted && answersAudio.Length > 2 && answersAudio[2] != null)
             {
                 audioSource.clip = answersAudio[2];
                 audioSource.Play();
                 A3HasStarted = true;
             }
-            else if (!A4HasStarted)
+            else if (!A4HasStarted && answersAudio.Length > 3 && answersAudio[3] != null)
             {
                 audioSource.clip = answersAudio[3];
                 audioSource.Play();
@@ -105,6 +107,15 @@ public class QuestionScript : MonoBehaviour
         else
         {
             QuizScript.gameEnded = true;
+        }
+    }
+
+    private void ReplayInstruction()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = question;
+            audioSource.Play();
         }
     }
 }
