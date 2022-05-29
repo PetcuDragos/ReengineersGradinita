@@ -16,6 +16,7 @@ public class QuestionScript : MonoBehaviour
     public AudioClip wrong;
     public GameObject nextQuiz;
     public GameObject instructionButton;
+    private bool gameEnded = false;
 
     private int score = 0;
 
@@ -24,6 +25,8 @@ public class QuestionScript : MonoBehaviour
     private bool A2HasStarted = false;
     private bool A3HasStarted = false;
     private bool A4HasStarted = false;    
+    
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,12 +39,13 @@ public class QuestionScript : MonoBehaviour
             var i1 = i;
             button.onClick.AddListener(() => { ButtonClicked(i1); });
         }
+        instructionButton.GetComponent<Button>().onClick.RemoveAllListeners();
         instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
     }
 
     private void ButtonClicked(int index)
     {
-        if (!audioSource.isPlaying)
+        if (!correctHasStarted)
         {
             if (index == correctIndex)
             {
@@ -57,6 +61,7 @@ public class QuestionScript : MonoBehaviour
                 score -= 3;
             }
         }
+
     }
 
     // Update is called once per frame
@@ -89,8 +94,9 @@ public class QuestionScript : MonoBehaviour
                 A4HasStarted = true;
             }
         }
-        else if (!audioSource.isPlaying && correctHasStarted)
+        else if (!audioSource.isPlaying && correctHasStarted && !gameEnded)
         {
+            gameEnded = true;
             EndGame();
         }
     }

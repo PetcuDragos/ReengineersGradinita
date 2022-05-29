@@ -15,7 +15,8 @@ public class DoorSceneScript : MonoBehaviour
     {
         if (intro != null)
         {
-            source.PlayOneShot(intro);
+            source.clip = intro;
+            source.Play();
             soundStarted = true;
         }
     }

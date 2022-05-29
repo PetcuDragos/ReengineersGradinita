@@ -22,6 +22,12 @@ public class GameHandler : MonoBehaviour
     public GameObject instructionButton;
     public GameObject currentGame;
     public GameObject nextGame;
+
+    public AudioSource audioSource;
+    public AudioClip intro;
+    public AudioClip gresit;
+    public AudioClip outro;
+
     private float timer = 0f;
 
     private bool gameFinished = false;
@@ -29,9 +35,13 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("GameHandler.Start");
-        //nextGameButton.SetActive(false);
+        //Debug.Log("GameHandler.Start");
+        audioSource.clip = intro;
+        audioSource.Play();
         instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
+        ButonAvion.GetComponent<Button>().onClick.AddListener(() => AlegAvion());
+        ButonTren.GetComponent<Button>().onClick.AddListener(() => AlegTren());
+        ButonVapor.GetComponent<Button>().onClick.AddListener(() => AlegVapor());
         confetti.SetActive(false);
         deactivateCoins();
         deactivateNumbers();
@@ -42,7 +52,8 @@ public class GameHandler : MonoBehaviour
     {
         //TextBox.GetComponent<TextMeshProUGUI>().text = "Fisrt choice made";
         Alegere = 1;
-        
+        audioSource.clip = gresit;
+        audioSource.Play();
         if (score > 30)
             score -= 35;
     }
@@ -50,7 +61,8 @@ public class GameHandler : MonoBehaviour
     {
         //TextBox.GetComponent<TextMeshProUGUI>().text = "sECOD choice made";
         Alegere = 2;
-        
+        audioSource.clip = gresit;
+        audioSource.Play();
         if (score > 30)
             score -= 35;
     }
@@ -58,7 +70,13 @@ public class GameHandler : MonoBehaviour
     {
         //TextBox.GetComponent<TextMeshProUGUI>().text = "Third choice mate";
         Alegere = 3;
-
+        audioSource.clip = outro;
+        audioSource.Play();
+        deactivateButtons();
+        deactivateCoins();
+        deactivateNumbers();
+        confetti.SetActive(true);
+        gameFinished = true;
         GameManager.Instance.Score[Game.One] = score;
     }
 
@@ -101,7 +119,6 @@ public class GameHandler : MonoBehaviour
 
     void activateButton2()
     {
-        Debug.Log("dsa");
         ButonTren.SetActive(true);
     }
 
@@ -176,17 +193,7 @@ public class GameHandler : MonoBehaviour
             activateNumber3();
         }
 
-
-        if (Alegere == 3)
-        {
-            deactivateButtons();
-            deactivateCoins();
-            deactivateNumbers();
-            confetti.SetActive(true);
-            gameFinished = true;
-        }
-
-        if(gameFinished && !this.gameObject.GetComponent<AudioSource>().isPlaying)
+        if(gameFinished && !audioSource.isPlaying)
         {
             NextGame();
         }
@@ -194,9 +201,10 @@ public class GameHandler : MonoBehaviour
 
     private void ReplayInstruction()
     {
-        if(!this.gameObject.GetComponent<AudioSource>().isPlaying)
+        if(!audioSource.isPlaying)
         {
-            this.gameObject.GetComponent<AudioSource>().Play();
+            audioSource.clip = intro;
+            audioSource.Play();
         }
     }
 
