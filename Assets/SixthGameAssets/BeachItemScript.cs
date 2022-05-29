@@ -16,6 +16,9 @@ public class BeachItemScript : MonoBehaviour
     public AudioClip wrong;
     public AudioClip correct;
 
+    private Rigidbody2D rigidbody2D;
+    private float speed = 5f;
+
     public void OnMouseDown()
     {
         isBeingHeld = true;
@@ -29,6 +32,7 @@ public class BeachItemScript : MonoBehaviour
 
     private void Start()
     {
+        rigidbody2D = GetComponent<Rigidbody2D>();
         for(int i =0; i < correctTargets.Length; i ++)
         {
             correctTargets[i].SetActive(true);
@@ -39,13 +43,22 @@ public class BeachItemScript : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (isBeingHeld)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            rigidbody2D.MovePosition((Vector2)transform.position + mousePos * (Time.deltaTime * speed));
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (isBeingHeld)
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            transform.Translate(mousePos);
+            // Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            // transform.Translate(mousePos);
 
             for (int i = 0; i < correctTargets.Length; i++)
             {
