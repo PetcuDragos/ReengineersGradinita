@@ -5,17 +5,20 @@ using UnityEngine.UI;
 
 public class BeachGameScript : MonoBehaviour
 {
+    public static int numberOfTrashItemsFound = 0;
+    
     public AudioSource audioSource;
     public AudioClip intro;
     public int numberOfTrashItems;
-    public static int numberOfTrashItemsFound = 0;
-    public static int score = 0;
     public GameObject instructionButton;
-
     private bool gameEnded = false;
+    
     // Start is called before the first frame update
     void Start()
     {
+        // Reset static state
+        numberOfTrashItemsFound = 0;
+
         instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
         if (intro != null)
         {
@@ -36,7 +39,6 @@ public class BeachGameScript : MonoBehaviour
 
     private void EndGame()
     {
-        SixthGameScript.score += score;
         SixthGameScript.beachGameFinished = true;
     }
 

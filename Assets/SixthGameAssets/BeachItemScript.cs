@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class BeachItemScript : MonoBehaviour
 {
+    public static event Action OnCorrectAnswer; 
+    public static event Action OnWrongAnswer; 
+    
     public GameObject[] correctTargets;
     public GameObject[] wrongTargets;
     private bool isBeingHeld = false;
@@ -47,7 +51,7 @@ public class BeachItemScript : MonoBehaviour
             {
                 if (correctTargets[i].GetComponent<Collider2D>().IsTouching(this.gameObject.GetComponent<Collider2D>()))
                 {
-                    BeachGameScript.score += 10;
+                    OnCorrectAnswer?.Invoke();
                     BeachGameScript.numberOfTrashItemsFound += 1;
                     this.gameObject.SetActive(false);
                     audioSource.clip = correct;
@@ -58,7 +62,7 @@ public class BeachItemScript : MonoBehaviour
             {
                 if (wrongTargets[i].GetComponent<Collider2D>().IsTouching(this.gameObject.GetComponent<Collider2D>()))
                 {
-                    BeachGameScript.score -= 2;
+                    OnWrongAnswer?.Invoke();
                     this.gameObject.SetActive(false);
                     audioSource.clip = wrong;
                     audioSource.Play();

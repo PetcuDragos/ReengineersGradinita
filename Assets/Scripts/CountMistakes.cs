@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameState;
 using UnityEngine;
 
 public class CountMistakes : MonoBehaviour
@@ -37,9 +38,6 @@ public class CountMistakes : MonoBehaviour
     {
         if (matches == 10 && !final)
         {
-            var finalScore = matches * 20 - mistakes * 5;
-            GameManager.Instance.Score[Game.Four] = finalScore;
-            
             Debug.Log("final joc!");
             Debug.Log(mistakes);
             final = true;
@@ -56,6 +54,10 @@ public class CountMistakes : MonoBehaviour
 
     private void NextGame()
     {
+        var finalScore = matches * 20 - mistakes * 5;
+        GameManager.Instance.Score[Game.Four] = finalScore;
+        GameManager.Instance.SaveScoreForCurrentChild();
+        
         currentGame.SetActive(false);
         nextGame.SetActive(true);
     }

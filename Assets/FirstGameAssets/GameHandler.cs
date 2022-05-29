@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameState;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
-    private int score = 100;
+    private int score = 0;
     public GameObject ButonAvion;
     public GameObject ButonTren;
     public GameObject ButonVapor;
@@ -77,7 +78,7 @@ public class GameHandler : MonoBehaviour
         deactivateNumbers();
         confetti.SetActive(true);
         gameFinished = true;
-        GameManager.Instance.Score[Game.One] = score;
+        score += 100;
     }
 
     void activateCoin1() {
@@ -210,6 +211,9 @@ public class GameHandler : MonoBehaviour
 
     private void NextGame()
     {
+        GameManager.Instance.Score[Game.One] = score;
+        GameManager.Instance.SaveScoreForCurrentChild();
+        
         currentGame.SetActive(false);
         nextGame.SetActive(true);
     }

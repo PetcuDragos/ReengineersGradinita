@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameState;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -129,9 +130,6 @@ public class ChamberSceneScript : MonoBehaviour
 
     void StopGame()
     {
-        GameManager.Instance.Score[Game.Three] = score;
-        GameManager.Instance.SaveScoreForCurrentChild();
-        
         source.clip = final;
         source.Play();
         canGoToNextGame = true;
@@ -139,6 +137,9 @@ public class ChamberSceneScript : MonoBehaviour
 
     void NextGame()
     {
+        GameManager.Instance.Score[Game.Three] = score;
+        GameManager.Instance.SaveScoreForCurrentChild();
+        
         currentGame.SetActive(false);
         nextGame.SetActive(true);
     }

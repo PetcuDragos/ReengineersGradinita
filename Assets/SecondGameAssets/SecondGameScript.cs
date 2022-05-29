@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameState;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SecondGameScript : MonoBehaviour
 {
 
-    public static int score = 0;
+    private int score = 0;
+    private Action increaseScore;
+    private Action decreaseScore;
+    
     private int currentItemIndex = -1;
     public GameObject[] items;
     public GameObject currentGame;
@@ -16,7 +21,6 @@ public class SecondGameScript : MonoBehaviour
     public AudioClip final;
     private bool endGameHandlerStarted = false;
     public GameObject instructionButton;
-    // Start is called before the first frame update
 
     private void ShowNextItem()
     {
@@ -26,6 +30,12 @@ public class SecondGameScript : MonoBehaviour
 
     void Start()
     {
+        // Subscribe to right/wrong answer events
+        increaseScore = () => score += 100;
+        decreaseScore = () => score -= 20;
+        ItemScript.OnCorrectAnswer += increaseScore;
+        ItemScript.OnWrongAnswer += decreaseScore;
+
         audioSource.clip = intro;
         audioSource.Play();
         instructionButton.GetComponent<Button>().onClick.AddListener(() => ReplayInstruction());
@@ -54,7 +64,6 @@ public class SecondGameScript : MonoBehaviour
 
     private void StartEndGame()
     {
-        GameManager.Instance.Score[Game.Two] = score;
         endGameHandlerStarted = true;
         audioSource.clip = final;
         audioSource.Play();
@@ -68,6 +77,13 @@ public class SecondGameScript : MonoBehaviour
 
     private void EndGame()
     {
+        // Unsubscribe from right/wrong answer events
+        ItemScript.OnCorrectAnswer -= increaseScore;
+        ItemScript.OnWrongAnswer -= decreaseScore;
+
+        GameManager.Instance.Score[Game.Two] = score;
+        GameManager.Instance.SaveScoreForCurrentChild();
+        
         currentGame.SetActive(false);
         nextGame.SetActive(true);
     }

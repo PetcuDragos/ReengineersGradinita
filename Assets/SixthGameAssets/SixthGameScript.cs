@@ -1,11 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameState;
 using UnityEngine;
 
 public class SixthGameScript : MonoBehaviour
 {
 
-    public static int score = 0;
+    private int score = 0;
+    private Action increaseScore;
+    private Action decreaseScore;
+    
     public GameObject trafficGame;
     public GameObject beachGame;
     public GameObject currentGame;
@@ -29,6 +34,16 @@ public class SixthGameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Reset static state
+        trafficGameFinished = false;
+        beachGameFinished = false;
+        
+        // Subscribe to right/wrong answer events
+        increaseScore = () => score += 100;
+        decreaseScore = () => score -= 20;
+        BeachItemScript.OnCorrectAnswer += increaseScore;
+        BeachItemScript.OnWrongAnswer += decreaseScore;
+        
         if (intro != null)
         {
             audioSource.clip = intro;
@@ -95,6 +110,10 @@ public class SixthGameScript : MonoBehaviour
 
     private void EndGame()
     {
+        // Unsubscribe from right/wrong answer events
+        BeachItemScript.OnCorrectAnswer -= increaseScore;
+        BeachItemScript.OnWrongAnswer -= decreaseScore;
+        
         GameManager.Instance.Score[Game.Six] = score;
         GameManager.Instance.SaveScoreForCurrentChild();
         

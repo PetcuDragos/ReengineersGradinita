@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 
 public class QuestionScript : MonoBehaviour
 {
+    public static event Action OnCorrectAnswer;
+    public static event Action OnWrongAnswer;
+    
     public AudioSource audioSource;
     public AudioClip question;
     public AudioClip[] answersAudio;
@@ -17,8 +21,6 @@ public class QuestionScript : MonoBehaviour
     public GameObject nextQuiz;
     public GameObject instructionButton;
     private bool gameEnded = false;
-
-    private int score = 0;
 
     private bool correctHasStarted = false;
     private bool A1HasStarted = false;
@@ -49,16 +51,16 @@ public class QuestionScript : MonoBehaviour
         {
             if (index == correctIndex)
             {
+                OnCorrectAnswer?.Invoke();
                 audioSource.clip = correct;
                 audioSource.Play();
                 correctHasStarted = true;
-                score += 10;
             }
             else
             {
+                OnWrongAnswer?.Invoke();
                 audioSource.clip = wrong;
                 audioSource.Play();
-                score -= 3;
             }
         }
 
@@ -103,7 +105,6 @@ public class QuestionScript : MonoBehaviour
 
     private void EndGame()
     {
-        QuizScript.score += score;
         code.GetComponent<TextMeshProUGUI>().text += (correctIndex+1);
         if(nextQuiz != null)
         {

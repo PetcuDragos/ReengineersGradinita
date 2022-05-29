@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameState;
 using UnityEngine;
 
 public class QuizScript : MonoBehaviour
@@ -18,11 +20,22 @@ public class QuizScript : MonoBehaviour
 
     public static bool gameEnded = false;
 
-    public static int score = 0;
+    private int score = 0;
+    private Action increaseScore;
+    private Action decreaseScore;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Reset static state
+        gameEnded = false;
+
+        // Subscribe to right/wrong answer events
+        increaseScore = () => score += 10;
+        decreaseScore = () => score -= 3;
+        QuestionScript.OnCorrectAnswer += increaseScore;
+        QuestionScript.OnWrongAnswer += decreaseScore;
+        
         audioSource.clip = intro;
         audioSource.Play();
         introStarted = true;
@@ -56,6 +69,10 @@ public class QuizScript : MonoBehaviour
 
     private void EndGame()
     {
+        // Unsubscribe from right/wrong answer events
+        QuestionScript.OnCorrectAnswer -= increaseScore;
+        QuestionScript.OnWrongAnswer -= decreaseScore;
+        
         GameManager.Instance.Score[Game.Five] = score;
         GameManager.Instance.SaveScoreForCurrentChild();
         

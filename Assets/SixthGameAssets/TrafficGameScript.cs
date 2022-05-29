@@ -17,6 +17,9 @@ public class TrafficGameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Reset static state
+        gameEnded = false;
+        
         if (intro != null)
         {
             audioSource.clip = intro;
