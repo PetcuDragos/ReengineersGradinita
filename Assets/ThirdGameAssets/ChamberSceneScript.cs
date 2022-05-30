@@ -71,7 +71,7 @@ public class ChamberSceneScript : MonoBehaviour
 
     void Correct()
     {
-        score += 1;
+        score += 100;
         confirmationMessageStarted = true;
         if(currentIndex < 5 - 1) 
         { 
@@ -82,7 +82,7 @@ public class ChamberSceneScript : MonoBehaviour
 
     void Incorrect()
     {
-        score -= 1;
+        score -= 5;
         source.clip = incorrectSound;
         source.Play();
     }
