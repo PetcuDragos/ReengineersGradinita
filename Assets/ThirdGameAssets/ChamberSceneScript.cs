@@ -62,6 +62,7 @@ public class ChamberSceneScript : MonoBehaviour
         if(index == chosenKeys[currentIndex])
         {
             Correct();
+            keys[index].SetActive(false);
         }
         else
         {
