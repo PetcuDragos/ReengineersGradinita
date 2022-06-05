@@ -29,6 +29,7 @@ namespace GameState
 
         private void Awake()
         {
+            string groupName = LoadChildrenNames.instance.getGroupName();
             // TODO: should only save to persistentDataPath
             _scoreFilePath = Application.dataPath + "/" + "scor_copii.csv";
             Debug.Log($"filepath:{_scoreFilePath}");
