@@ -36,17 +36,16 @@ public class QuizScript : MonoBehaviour
         {
             // Reset static state
             gameEnded = false;
-
-            // Subscribe to right/wrong answer events
-            increaseScore = () => score += 10;
-            decreaseScore = () => score -= 3;
-            QuestionScript.OnCorrectAnswer += increaseScore;
-            QuestionScript.OnWrongAnswer += decreaseScore;
-
-            audioSource.clip = intro;
-            audioSource.Play();
-            introStarted = true;
-        }
+        // Subscribe to right/wrong answer events
+        increaseScore = () => score += 25;
+        decreaseScore = () => score -= 5;
+        QuestionScript.OnCorrectAnswer += increaseScore;
+        QuestionScript.OnWrongAnswer += decreaseScore;
+        
+        audioSource.clip = intro;
+        audioSource.Play();
+        introStarted = true;
+	}
     }
 
     // Update is called once per frame

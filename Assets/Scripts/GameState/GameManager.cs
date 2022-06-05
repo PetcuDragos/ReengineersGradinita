@@ -17,6 +17,16 @@ namespace GameState
         public string ChildName { get; set; }
         public Dictionary<Game, int> Score { get; set; } = new Dictionary<Game, int>();
 
+        public Dictionary<Game, int> MaxScore { get; } = new Dictionary<Game, int>()
+        {
+            { Game.One, 100 },
+            { Game.Two, 700 },
+            { Game.Three, 500 },
+            { Game.Four, 200 },
+            { Game.Five, 100 },
+            { Game.Six, 600 }
+        };
+
         private void Awake()
         {
             // TODO: should only save to persistentDataPath
@@ -86,13 +96,15 @@ namespace GameState
         {
             // Build the csv row of the child
             StringBuilder scoreRow = new StringBuilder($"{ChildName},");
+            float sumAverages = 0f;
             foreach (Game game in Enum.GetValues(typeof(Game)))
             {
                 var score = Score[game];
+                sumAverages += (float)score / MaxScore[game] * 10;
                 scoreRow.Append(score.Equals(-1) ? "NETERMINAT," : $"{score},");
             }
-
-            scoreRow.Remove(scoreRow.Length - 1, 1); // Remove last comma
+            float finalAvg = sumAverages / Enum.GetValues(typeof(Game)).Length;
+            scoreRow.Append($"{finalAvg:F1}");
 
             // Save the new row with scores to csv
             if (!File.Exists(_scoreFilePath))
@@ -101,6 +113,12 @@ namespace GameState
                 for (int i = 0; i < Enum.GetValues(typeof(Game)).Length; i++)
                 {
                     header.Append($"Joc {i+1},");
+                }
+                header.Append("Media (max. 10)");
+                header.Append($"{Environment.NewLine}Scor maxim,");
+                foreach (Game game in Enum.GetValues(typeof(Game)))
+                {
+                    header.Append($"{MaxScore[game]},");
                 }
                 header.Remove(header.Length - 1, 1);
                 File.AppendAllText(_scoreFilePath, header.ToString());
