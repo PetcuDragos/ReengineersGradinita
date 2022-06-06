@@ -11,6 +11,7 @@ namespace GameState
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        private static readonly Encoding ScoreEncoding = Encoding.UTF8;
 
         private string _scoreFilePath;
     
@@ -61,7 +62,7 @@ namespace GameState
             if (File.Exists(_scoreFilePath))
             {
                 Debug.Log($"LOADING SCORES - Child name '{ChildName}'");
-                var prevScores = File.ReadAllText(_scoreFilePath);
+                var prevScores = File.ReadAllText(_scoreFilePath, ScoreEncoding);
                 var childRow = "";
                 foreach (var row in prevScores.Split(Environment.NewLine))
                 {
@@ -129,11 +130,11 @@ namespace GameState
                     header.Append($"{MaxScore[game]},");
                 }
                 header.Remove(header.Length - 1, 1);
-                File.AppendAllText(_scoreFilePath, header.ToString());
+                File.AppendAllText(_scoreFilePath, header.ToString(), ScoreEncoding);
             }
         
             // Append/Update new scores to csv
-            var prevScores = File.ReadAllText(_scoreFilePath);
+            var prevScores = File.ReadAllText(_scoreFilePath, ScoreEncoding);
             var prevRow = "";
             foreach (var row in prevScores.Split(Environment.NewLine))
             {
@@ -147,7 +148,7 @@ namespace GameState
             else
                 newScores = prevScores.Replace(prevRow, scoreRow.ToString());
 
-            File.WriteAllText(_scoreFilePath, newScores);
+            File.WriteAllText(_scoreFilePath, newScores, ScoreEncoding);
         }
 
         public void ResetGame()

@@ -10,6 +10,8 @@ using UnityEngine.UI;
 public class LoadChildrenNames : MonoBehaviour
 {
     public static LoadChildrenNames instance;
+    private static readonly Encoding NamesEncoding = Encoding.UTF8;
+    
     private string _namesFilePath;
     public GameObject[] childNameFieldsTeacherUI;
     public GameObject[] childNameFieldsStudentUI;
@@ -43,7 +45,7 @@ public class LoadChildrenNames : MonoBehaviour
     {
         if (File.Exists(_namesFilePath))
         {
-            var prevScores = File.ReadAllText(_namesFilePath);
+            var prevScores = File.ReadAllText(_namesFilePath, NamesEncoding);
 
             int index = -1;
             foreach (var row in prevScores.Split(Environment.NewLine))
@@ -79,7 +81,7 @@ public class LoadChildrenNames : MonoBehaviour
             result.Append(childNameFieldsTeacherUI[i].GetComponent<TMP_InputField>().text);
             result.Append($"{Environment.NewLine}");
         }
-        File.WriteAllText(_namesFilePath, result.ToString());
+        File.WriteAllText(_namesFilePath, result.ToString(), NamesEncoding);
         LoadAllNames();
     }
 
