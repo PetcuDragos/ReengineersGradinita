@@ -1091,7 +1091,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 12193117}
-  - component: {fileID: 12193119}
   - component: {fileID: 12193118}
   m_Layer: 0
   m_Name: GameManager
@@ -1127,75 +1126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e8335acaba6284085b1043270dfd88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &12193119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 12193116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 930834dc624529a49990227039517072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  childNameFieldsTeacherUI:
-  - {fileID: 1084081914}
-  - {fileID: 62517454}
-  - {fileID: 9277333}
-  - {fileID: 2024099496}
-  - {fileID: 353083537}
-  - {fileID: 1453571417}
-  - {fileID: 1841173424}
-  - {fileID: 753824072}
-  - {fileID: 80300807}
-  - {fileID: 1494005677}
-  - {fileID: 137924419}
-  - {fileID: 2123538903}
-  - {fileID: 1920938040}
-  - {fileID: 3410571}
-  - {fileID: 745646229}
-  - {fileID: 24347657}
-  - {fileID: 1939242080}
-  - {fileID: 1701860667}
-  - {fileID: 621969994}
-  - {fileID: 1650668225}
-  - {fileID: 210072267}
-  - {fileID: 204819468}
-  - {fileID: 1531512563}
-  - {fileID: 1609023232}
-  - {fileID: 944359340}
-  - {fileID: 1155437227}
-  childNameFieldsStudentUI:
-  - {fileID: 1682335415}
-  - {fileID: 736492556}
-  - {fileID: 111116827}
-  - {fileID: 1434584538}
-  - {fileID: 472864540}
-  - {fileID: 284681354}
-  - {fileID: 225837406}
-  - {fileID: 43487194}
-  - {fileID: 1542770178}
-  - {fileID: 258476447}
-  - {fileID: 1880577714}
-  - {fileID: 639768393}
-  - {fileID: 839027597}
-  - {fileID: 623964049}
-  - {fileID: 1744562379}
-  - {fileID: 2002831302}
-  - {fileID: 1641922665}
-  - {fileID: 1946727106}
-  - {fileID: 405963037}
-  - {fileID: 317533902}
-  - {fileID: 904477482}
-  - {fileID: 277321574}
-  - {fileID: 1965092302}
-  - {fileID: 1010011522}
-  - {fileID: 30840063}
-  - {fileID: 1012308515}
-  kindergartenGroupField: {fileID: 1903533879}
-  kindergartenGroupFieldStudentUI: {fileID: 1090816839}
-  saveButton: {fileID: 1505746579}
 --- !u!1 &14688106
 GameObject:
   m_ObjectHideFlags: 0
@@ -8650,7 +8580,7 @@ Transform:
   m_Children:
   - {fileID: 301093196}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237387779
 GameObject:
@@ -11310,7 +11240,7 @@ Transform:
   m_Children:
   - {fileID: 1120872428}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &293242568
 GameObject:
@@ -18041,7 +17971,7 @@ Transform:
   m_Children:
   - {fileID: 387491945}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352191414
 GameObject:
@@ -21203,7 +21133,7 @@ Transform:
   m_Children:
   - {fileID: 1011356014}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &476672392
 GameObject:
@@ -53571,7 +53501,7 @@ Transform:
   m_Children:
   - {fileID: 1329472608}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120872427
 GameObject:
@@ -61194,7 +61124,7 @@ Transform:
   m_Children:
   - {fileID: 1988595952}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1214042150
 GameObject:
@@ -62767,7 +62697,7 @@ Transform:
   m_Children:
   - {fileID: 293734868}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1272884724
 GameObject:
@@ -71860,6 +71790,107 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1380918804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1380918806}
+  - component: {fileID: 1380918805}
+  m_Layer: 0
+  m_Name: LoadChildrenNames
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1380918805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380918804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930834dc624529a49990227039517072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childNameFieldsTeacherUI:
+  - {fileID: 1084081914}
+  - {fileID: 62517454}
+  - {fileID: 9277333}
+  - {fileID: 2024099496}
+  - {fileID: 353083537}
+  - {fileID: 1453571417}
+  - {fileID: 1841173424}
+  - {fileID: 753824072}
+  - {fileID: 80300807}
+  - {fileID: 1494005677}
+  - {fileID: 137924419}
+  - {fileID: 2123538903}
+  - {fileID: 1920938040}
+  - {fileID: 3410571}
+  - {fileID: 745646229}
+  - {fileID: 24347657}
+  - {fileID: 1939242080}
+  - {fileID: 1701860667}
+  - {fileID: 621969994}
+  - {fileID: 1650668225}
+  - {fileID: 210072267}
+  - {fileID: 204819468}
+  - {fileID: 1531512563}
+  - {fileID: 1609023232}
+  - {fileID: 944359340}
+  - {fileID: 1155437227}
+  childNameFieldsStudentUI:
+  - {fileID: 1682335415}
+  - {fileID: 736492556}
+  - {fileID: 111116827}
+  - {fileID: 1434584538}
+  - {fileID: 472864540}
+  - {fileID: 284681354}
+  - {fileID: 225837406}
+  - {fileID: 43487194}
+  - {fileID: 1542770178}
+  - {fileID: 258476447}
+  - {fileID: 1880577714}
+  - {fileID: 639768393}
+  - {fileID: 839027597}
+  - {fileID: 623964049}
+  - {fileID: 1744562379}
+  - {fileID: 2002831302}
+  - {fileID: 1641922665}
+  - {fileID: 1946727106}
+  - {fileID: 405963037}
+  - {fileID: 317533902}
+  - {fileID: 904477482}
+  - {fileID: 277321574}
+  - {fileID: 1965092302}
+  - {fileID: 1010011522}
+  - {fileID: 30840063}
+  - {fileID: 1012308515}
+  kindergartenGroupField: {fileID: 1903533879}
+  kindergartenGroupFieldStudentUI: {fileID: 1090816839}
+  saveButton: {fileID: 1505746579}
+--- !u!4 &1380918806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380918804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1381728627
 GameObject:
   m_ObjectHideFlags: 0
@@ -79830,7 +79861,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -100.92999, y: 45.299988}
+  m_AnchoredPosition: {x: -100.92993, y: 45.30005}
   m_SizeDelta: {x: 201.86, y: 90.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1505746581
@@ -80154,7 +80185,7 @@ RectTransform:
   - {fileID: 841580204}
   - {fileID: 1224209741}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -82066,7 +82097,7 @@ Transform:
   m_Children:
   - {fileID: 500532951}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1599194149
 GameObject:
