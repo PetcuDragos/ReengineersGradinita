@@ -29,7 +29,6 @@ namespace GameState
 
         private void Awake()
         {
-            string groupName = LoadChildrenNames.instance.getGroupName();
             // TODO: should only save to persistentDataPath
             _scoreFilePath = Application.dataPath + "/" + "scor_copii.csv";
             Debug.Log($"filepath:{_scoreFilePath}");
@@ -51,7 +50,7 @@ namespace GameState
         {
             if (File.Exists(_scoreFilePath))
             {
-                Debug.Log("Child name " + ChildName);
+                Debug.Log($"LOADING SCORES - Child name '{ChildName}'");
                 var prevScores = File.ReadAllText(_scoreFilePath);
                 var childRow = "";
                 foreach (var row in prevScores.Split(Environment.NewLine))
