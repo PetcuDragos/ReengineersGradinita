@@ -99,9 +99,9 @@ namespace GameState
             float sumAverages = 0f;
             foreach (Game game in Enum.GetValues(typeof(Game)))
             {
-                var score = Score[game];
-                sumAverages += (float)score / MaxScore[game] * 10;
-                scoreRow.Append(score.Equals(-1) ? "NETERMINAT," : $"{score},");
+                scoreRow.Append(Score[game].Equals(-1) ? "NETERMINAT," : $"{Score[game]},");
+                var nonNegativeScore = Score[game] < 0 ? 0 : Score[game];
+                sumAverages += (float)nonNegativeScore / MaxScore[game] * 10;
             }
             float finalAvg = sumAverages / Enum.GetValues(typeof(Game)).Length;
             scoreRow.Append($"{finalAvg:F1}");
