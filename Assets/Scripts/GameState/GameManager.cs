@@ -156,6 +156,11 @@ namespace GameState
             Debug.Log("GameManager - GAME RESET");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        
+        public void OpenScoreFile()
+        {
+            Application.OpenURL("file:///" + _scoreFilePath);
+        }
     }
 
     public enum Game
