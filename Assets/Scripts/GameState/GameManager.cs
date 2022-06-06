@@ -15,7 +15,8 @@ namespace GameState
         private string _scoreFilePath;
     
         public string ChildName { get; set; }
-        public Dictionary<Game, int> Score { get; set; } = new Dictionary<Game, int>();
+        public int CurrentRound { get; set; }
+        public Dictionary<Game, int> Score { get; } = new Dictionary<Game, int>();
 
         public Dictionary<Game, int> MaxScore { get; } = new Dictionary<Game, int>()
         {
@@ -35,15 +36,24 @@ namespace GameState
         
             Instance = this;
         
-            // initialize all scores with -1
-            foreach (Game game in Enum.GetValues(typeof(Game)))
-                Score.Add(game, -1);
+            InitChildStatus();
         }
 
         // Start is called before the first frame update
         void Start()
         {
         
+        }
+
+        private void InitChildStatus()
+        {
+            Score.Clear();
+            foreach (Game game in Enum.GetValues(typeof(Game)))
+            {
+                Score.Add(game, -1);
+            }
+
+            CurrentRound = 0;
         }
 
         public void LoadScoreForCurrentChild()
@@ -80,14 +90,12 @@ namespace GameState
                         }
                         index++;
                     }
+
+                    CurrentRound = int.Parse(gamesScore[index + 1]);
                 }
                 else
                 {
-                    Score.Clear();
-                    foreach (Game game in Enum.GetValues(typeof(Game)))
-                    {
-                        Score.Add(game, -1);
-                    }
+                    InitChildStatus();
                 }
             }
         }
@@ -104,9 +112,9 @@ namespace GameState
                 sumAverages += (float)nonNegativeScore / MaxScore[game] * 10;
             }
             float finalAvg = sumAverages / Enum.GetValues(typeof(Game)).Length;
-            scoreRow.Append($"{finalAvg:F1}");
+            scoreRow.Append($"{finalAvg:F1},{CurrentRound}");
 
-            // Save the new row with scores to csv
+            // Build and save the header, if not previously created
             if (!File.Exists(_scoreFilePath))
             {
                 StringBuilder header = new StringBuilder("Nume copil,");
@@ -114,8 +122,8 @@ namespace GameState
                 {
                     header.Append($"Joc {i+1},");
                 }
-                header.Append("Media (max. 10)");
-                header.Append($"{Environment.NewLine}Scor maxim,");
+                header.Append("Media (max. 10),Nr. Runde").Append(Environment.NewLine);
+                header.Append("Scor maxim,");
                 foreach (Game game in Enum.GetValues(typeof(Game)))
                 {
                     header.Append($"{MaxScore[game]},");
@@ -124,6 +132,7 @@ namespace GameState
                 File.AppendAllText(_scoreFilePath, header.ToString());
             }
         
+            // Append/Update new scores to csv
             var prevScores = File.ReadAllText(_scoreFilePath);
             var prevRow = "";
             foreach (var row in prevScores.Split(Environment.NewLine))

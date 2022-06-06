@@ -24,6 +24,7 @@ public class Child_SetChildNameOnClick : MonoBehaviour
             string childName = GetComponentInChildren<TMP_InputField>()?.text;
             GameManager.Instance.ChildName = childName;
             GameManager.Instance.LoadScoreForCurrentChild();
+            GameManager.Instance.CurrentRound += 1; // A new round starts, each time the child "logs in"
         });
     }
 }
